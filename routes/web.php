@@ -20,7 +20,15 @@ use Illuminate\Support\Facades\Route;
 // all listings 
 Route::get('/',[ListingController::class, 'index']);
 
-// single listing
 
-// Rote Model Binding
+// show create listing
+Route::get('listing/create', [ListingController::class, 'create']);
+
+// store listing
+Route::post('listings', [ListingController::class, 'store']);
+
+// single listing
 Route::get('/listing/{listing}', [ListingController::class, 'show']);
+
+
+
