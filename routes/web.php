@@ -14,15 +14,22 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+*/ 
 
 
 // all listings 
 Route::get('/',[ListingController::class, 'index']);
 
+// Update listing
+Route::put('/listings/{listing}', [ListingController::class, 'update']);
 
+// Delete listing
+Route::delete('/listings/{listing}', [ListingController::class, 'destroy']);
+
+// Edit listing
+Route::get('/listings/{listing}/edit', [ListingController::class, 'edit']);     
 // show create listing
-Route::get('listing/create', [ListingController::class, 'create']);
+Route::get('listing/create',  [ListingController::class, 'create']);
 
 // store listing
 Route::post('listings', [ListingController::class, 'store']);

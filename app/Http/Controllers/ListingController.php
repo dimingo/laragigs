@@ -47,12 +47,55 @@ public function store(Request $request){
     if($request->hasFile('logo')){
         $formFields['logo'] = $request->file("logo")->store('logos', 'public');
     }
-//    dd($formFields);
-    listing::create($formFields);
 
-    // session()->flash('success', 'Listing created successfully');
+    listing::create($formFields);
 
     return redirect("/")->with('success', 'Listing created successfully');
 
 }
+
+// Update listing
+public function update(Request $request, listing $listing){
+   
+    $formFields = $request->validate([
+        'title' => 'required',
+        'tags' => 'required',
+        'company' => ['required'],
+        'location' => 'required',
+        'email' =>['required', 'email'],
+        'website' => 'required',
+        'description' => 'required',
+    ]);
+
+    if($request->hasFile('logo')){
+        $formFields['logo'] = $request->file("logo")->Update('logos', 'public');
+    }
+
+  $listing->update($formFields);
+
+    return back()->with('success', 'Listing Updated successfully');
+
 }
+
+
+
+// show edit form
+public function edit(listing $listing){
+    // dd($listing);
+    return view('edit', [
+        "listing" => $listing
+    ]);
+}
+
+// Delete listing
+public function destroy(listing $listing){
+    $listing->delete();
+    return redirect("/")->with('success', 'Listing deleted successfully');
+}
+
+}
+ 
+    
+
+
+
