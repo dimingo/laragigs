@@ -58,6 +58,7 @@
         <button type="submit" class="text-red-500" >
             <i class="fa-solid fa-trash"></i>
         </button>
+    </form>
         
 
  </x-card>
