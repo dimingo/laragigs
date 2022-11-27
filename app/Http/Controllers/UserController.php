@@ -72,3 +72,4 @@ class UserController extends Controller
         ])->onlyInput('email');
     }
 }
+ 
